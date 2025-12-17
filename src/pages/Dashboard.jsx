@@ -2,6 +2,7 @@ import { useState } from "react";
 import { getPatients, getDoctorProfile } from "@/utils/storage";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, DollarSign, TrendingUp, Activity } from "lucide-react";
+import { CometCard } from "@/components/ui/comet-card";
 
 export default function Dashboard() {
   const [patientCount] = useState(() => getPatients().length);
@@ -19,51 +20,59 @@ export default function Dashboard() {
         <p className="text-black">Manage patients and prescriptions from one place.</p>
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="hover:shadow-lg transition-all duration-300 border-primary/20 bg-white overflow-hidden relative">
-          <div className="absolute top-0 right-0 p-4 opacity-10">
-            <Users className="h-24 w-24 text-primary" />
-          </div>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xl font-medium text- uppercase tracking-wider">Total Patients</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
-                <Users className="h-6 w-6" />
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-foreground">{patientCount}</div>
-                <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
-                  <TrendingUp className="h-3 w-3 text-green-500" />
-                  <span className="text-green-600 font-medium">+12%</span> from last month
-                </p>
+        <CometCard>
+          <div className="flex w-full cursor-pointer flex-col items-stretch rounded-[16px] border border-primary/20 bg-card p-4 shadow-sm hover:shadow-md transition-all">
+            <div className="flex-1">
+              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[12px]">
+                <img
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  alt="Patients"
+                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4">
+                  <div className="text-3xl font-bold text-white">{patientCount}</div>
+                  <div className="text-sm text-green-300 font-medium flex items-center gap-1">
+                    <TrendingUp className="h-3 w-3" /> +12% growth
+                  </div>
+                </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
+            <div className="mt-4 flex flex-shrink-0 items-center justify-between font-mono text-foreground">
+              <div className="text-sm font-semibold uppercase tracking-wider">Total Patients</div>
+              <div className="text-xs text-muted-foreground flex items-center gap-1">
+                <Users className="h-3 w-3" /> Active
+              </div>
+            </div>
+          </div>
+        </CometCard>
 
-        <Card className="hover:shadow-lg transition-all duration-300 border-primary/20 bg-white overflow-hidden relative">
-          <div className="absolute top-0 right-0 p-4 opacity-10">
-            <DollarSign className="h-24 w-24 text-primary" />
-          </div>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xl font-medium text- uppercase tracking-wider">Total Revenue</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-full bg-green-50 flex items-center justify-center text-green-600">
-                <DollarSign className="h-6 w-6" />
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-foreground">${revenue.toLocaleString()}</div>
-                <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
-                  <Activity className="h-3 w-3 text-primary" />
-                  Based on patient volume
-                </p>
+        <CometCard>
+          <div className="flex w-full cursor-pointer flex-col items-stretch rounded-[16px] border border-primary/20 bg-card p-4 shadow-sm hover:shadow-md transition-all">
+            <div className="flex-1">
+              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[12px]">
+                <img
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  alt="Revenue"
+                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4">
+                  <div className="text-3xl font-bold text-white">${revenue.toLocaleString()}</div>
+                  <div className="text-sm text-green-300 font-medium flex items-center gap-1">
+                    <Activity className="h-3 w-3" /> Estimated
+                  </div>
+                </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
+            <div className="mt-4 flex flex-shrink-0 items-center justify-between font-mono text-foreground">
+              <div className="text-sm font-semibold uppercase tracking-wider">Total Revenue</div>
+              <div className="text-xs text-muted-foreground flex items-center gap-1">
+                <DollarSign className="h-3 w-3" /> YTD
+              </div>
+            </div>
+          </div>
+        </CometCard>
       </div>
     </div>
   );
