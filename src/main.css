@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        /* Healing Green Theme */
+        /* Primary: #16A34A (Green 600) -> 142 76% 36% */
+        --primary: 142 76% 36%;
+        --primary-foreground: 145 80% 96%;
+
+        /* Secondary: #4ADE80 (Green 400) -> 142 69% 58% */
+        --secondary: 142 69% 58%;
+        --secondary-foreground: 145 80% 10%;
+
+        /* Background: #F0FDF4 (Green 50) -> 145 80% 96% */
+        --background: 145 80% 96%;
+        --foreground: 145 80% 10%;
+        /* #052E16 */
+
+        /* Card: #FFFFFF */
+        --card: 0 0% 100%;
+        --card-foreground: 145 80% 10%;
+
+        /* Popover */
+        --popover: 0 0% 100%;
+        --popover-foreground: 145 80% 10%;
+
+        /* Accent: Green-100 equivalent for hovers */
+        --accent: 142 70% 90%;
+        --accent-foreground: 145 80% 10%;
+
+        /* Muted: #6B7280 -> 220 9% 46% */
+        --muted: 220 9% 46%;
+        --muted-foreground: 220 9% 80%;
+
+        /* Destructive */
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        /* Border/Input/Ring */
+        --border: 142 76% 36%;
+        /* Using primary for border to fit theme */
+        --input: 142 76% 36%;
+        --ring: 142 76% 36%;
+
+        --radius: 0.5rem;
+    }
+
+    .dark {
+        --background: 145 80% 5%;
+        /* Darker green for dark mode */
+        --foreground: 145 80% 96%;
+
+        --card: 145 80% 5%;
+        --card-foreground: 145 80% 96%;
+
+        --popover: 145 80% 5%;
+        --popover-foreground: 145 80% 96%;
+
+        --primary: 142 76% 36%;
+        --primary-foreground: 145 80% 96%;
+
+        --secondary: 145 80% 10%;
+        --secondary-foreground: 145 80% 96%;
+
+        --muted: 220 9% 46%;
+        --muted-foreground: 215 20.2% 65.1%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 224.3 76.3% 48%;
+    }
+
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-family: "Patrick Hand", cursive;
+    }
+
+    .patrick-hand-regular {
+        font-family: "Patrick Hand", cursive;
+        font-weight: 400;
+        font-style: normal;
+    }
+}
