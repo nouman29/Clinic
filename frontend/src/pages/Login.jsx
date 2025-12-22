@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
 import { login } from "@/utils/auth";
 import { Button } from "@/components/ui/button";
@@ -46,7 +46,12 @@ export default function Login() {
             <Button className="w-full" type="submit">
               Login
             </Button>
-            <div className="text-center text-sm text-muted-foreground">Forgot password?</div>
+            <div className="text-center text-sm text-muted-foreground">
+              Don't have an account?{" "}
+              <Link to="/signup" className="text-primary hover:underline font-medium">
+                Sign up here
+              </Link>
+            </div>
           </form>
         </CardContent>
       </Card>
