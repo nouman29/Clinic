@@ -11,18 +11,20 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
       toast.error("Please fill in all fields");
       return;
     }
-    const ok = login({ email, password });
-    if (ok) {
+
+    const result = await login({ email, password });
+
+    if (result.success) {
       toast.success("Welcome back!");
       navigate("/dashboard");
     } else {
-      toast.error("Invalid credentials");
+      toast.error(result.message || "Invalid credentials");
     }
   };
 
