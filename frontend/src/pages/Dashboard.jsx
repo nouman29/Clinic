@@ -3,8 +3,10 @@ import { getPatients, getDoctorProfile } from "@/utils/storage";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, DollarSign, TrendingUp, Activity } from "lucide-react";
 import { CometCard } from "@/components/ui/comet-card";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function Dashboard() {
+  const { user } = useAuth();
   const [patientCount] = useState(() => getPatients().length);
   const [revenue] = useState(() => {
     const feeStr = getDoctorProfile().fee || "0";
@@ -16,8 +18,14 @@ export default function Dashboard() {
   return (
     <div className="space-y-4 h-screen p-6">
       <div className="">
-        <h1 className="text-3xl font-semibold mb-4 text-primary">Welcome, Doctor</h1>
-        <p className="text-black">Manage patients and prescriptions from one place.</p>
+        <h1 className="text-3xl font-semibold mb-4 text-primary capitalize">
+          Welcome, {user?.name || user?.role || "User"}
+        </h1>
+        <p className="text-black">
+          {user?.role === "doctor"
+            ? "Manage your patients and prescriptions from one place."
+            : `System dashboard for ${user?.role || "accessing clinic resources"}.`}
+        </p>
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <CometCard>
